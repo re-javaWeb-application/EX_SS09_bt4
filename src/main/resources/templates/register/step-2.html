@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng ký nhà bán hàng - Bước 2</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="page">
+    <header class="topbar">
+        <div class="brand">RikkeiMall</div>
+        <div class="badge">Đối tác nhà bán hàng</div>
+    </header>
+
+    <section class="wizard-shell">
+        <aside class="steps" aria-label="Tiến trình đăng ký">
+            <div class="step done">
+                <span class="step-number">1</span>
+                <span class="step-title">Cá nhân</span>
+            </div>
+            <div class="step active">
+                <span class="step-number">2</span>
+                <span class="step-title">Gian hàng</span>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <span class="step-title">Xác nhận</span>
+            </div>
+        </aside>
+
+        <section class="form-panel">
+            <h1 class="panel-title">Thông tin gian hàng</h1>
+            <p class="panel-subtitle">Thông tin vận hành và pháp lý của gian hàng trên RikkeiMall.</p>
+
+            <form th:action="@{/seller/register/step-2}" th:object="${sellerRegistrationForm}" method="post">
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="shopName">Tên gian hàng</label>
+                        <input id="shopName" type="text" th:field="*{shopName}"
+                               th:classappend="${#fields.hasErrors('shopName')} ? ' is-invalid' : ''">
+                        <p class="error" th:if="${#fields.hasErrors('shopName')}" th:errors="*{shopName}"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="shopCategory">Ngành hàng</label>
+                        <select id="shopCategory" th:field="*{shopCategory}"
+                                th:classappend="${#fields.hasErrors('shopCategory')} ? ' is-invalid' : ''">
+                            <option value="">Chọn ngành hàng</option>
+                            <option th:each="category : ${shopCategories}"
+                                    th:value="${category}"
+                                    th:text="${category}"></option>
+                        </select>
+                        <p class="error" th:if="${#fields.hasErrors('shopCategory')}" th:errors="*{shopCategory}"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="taxCode">Mã số thuế</label>
+                        <input id="taxCode" type="text" th:field="*{taxCode}"
+                               th:classappend="${#fields.hasErrors('taxCode')} ? ' is-invalid' : ''">
+                        <p class="error" th:if="${#fields.hasErrors('taxCode')}" th:errors="*{taxCode}"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="shopAddress">Địa chỉ kho/gian hàng</label>
+                        <input id="shopAddress" type="text" th:field="*{shopAddress}"
+                               th:classappend="${#fields.hasErrors('shopAddress')} ? ' is-invalid' : ''">
+                        <p class="error" th:if="${#fields.hasErrors('shopAddress')}" th:errors="*{shopAddress}"></p>
+                    </div>
+
+                    <div class="field full">
+                        <label for="shopDescription">Mô tả gian hàng</label>
+                        <textarea id="shopDescription" th:field="*{shopDescription}"
+                                  th:classappend="${#fields.hasErrors('shopDescription')} ? ' is-invalid' : ''"></textarea>
+                        <p class="error" th:if="${#fields.hasErrors('shopDescription')}" th:errors="*{shopDescription}"></p>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a class="button secondary" th:href="@{/seller/register/step-1}">Quay lại</a>
+                    <button class="button primary" type="submit">Tiếp</button>
+                </div>
+            </form>
+        </section>
+    </section>
+</main>
+</body>
+</html>

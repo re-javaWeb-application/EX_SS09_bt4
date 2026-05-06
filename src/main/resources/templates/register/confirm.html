@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng ký nhà bán hàng - Xác nhận</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="page">
+    <header class="topbar">
+        <div class="brand">RikkeiMall</div>
+        <div class="badge">Đối tác nhà bán hàng</div>
+    </header>
+
+    <section class="wizard-shell">
+        <aside class="steps" aria-label="Tiến trình đăng ký">
+            <div class="step done">
+                <span class="step-number">1</span>
+                <span class="step-title">Cá nhân</span>
+            </div>
+            <div class="step done">
+                <span class="step-number">2</span>
+                <span class="step-title">Gian hàng</span>
+            </div>
+            <div class="step active">
+                <span class="step-number">3</span>
+                <span class="step-title">Xác nhận</span>
+            </div>
+        </aside>
+
+        <section class="form-panel" th:object="${sellerRegistrationForm}">
+            <h1 class="panel-title">Xác nhận thông tin</h1>
+            <p class="panel-subtitle">Kiểm tra lại hồ sơ trước khi gửi đăng ký mở gian hàng.</p>
+
+            <div class="summary">
+                <section class="summary-section">
+                    <h2>Thông tin cá nhân</h2>
+                    <div class="summary-grid">
+                        <div>
+                            <p class="summary-label">Họ tên</p>
+                            <p class="summary-value" th:text="*{fullName}"></p>
+                        </div>
+                        <div>
+                            <p class="summary-label">Email</p>
+                            <p class="summary-value" th:text="*{email}"></p>
+                        </div>
+                        <div>
+                            <p class="summary-label">Số điện thoại</p>
+                            <p class="summary-value" th:text="*{phone}"></p>
+                        </div>
+                        <div>
+                            <p class="summary-label">CCCD/CMND</p>
+                            <p class="summary-value" th:text="*{identityNumber}"></p>
+                        </div>
+                        <div>
+                            <p class="summary-label">Địa chỉ liên hệ</p>
+                            <p class="summary-value" th:text="*{contactAddress}"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="summary-section">
+                    <h2>Thông tin gian hàng</h2>
+                    <div class="summary-grid">
+                        <div>
+                            <p class="summary-label">Tên gian hàng</p>
+                            <p class="summary-value" th:text="*{shopName}"></p>
+                        </div>
+                        <div>
+                            <p class="summary-label">Ngành hàng</p>
+                            <p class="summary-value" th:text="*{shopCategory}"></p>
+                        </div>
+                        <div>
+                            <p class="summary-label">Mã số thuế</p>
+                            <p class="summary-value" th:text="*{taxCode}"></p>
+                        </div>
+                        <div>
+                            <p class="summary-label">Địa chỉ kho/gian hàng</p>
+                            <p class="summary-value" th:text="*{shopAddress}"></p>
+                        </div>
+                        <div>
+                            <p class="summary-label">Mô tả</p>
+                            <p class="summary-value" th:text="*{shopDescription} ?: 'Không có'"></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <form th:action="@{/seller/register/complete}" method="post">
+                <div class="actions">
+                    <a class="button secondary" th:href="@{/seller/register/step-2}">Quay lại</a>
+                    <button class="button complete" type="submit">Hoàn tất</button>
+                </div>
+            </form>
+        </section>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng ký nhà bán hàng - Bước 1</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="page">
+    <header class="topbar">
+        <div class="brand">RikkeiMall</div>
+        <div class="badge">Đối tác nhà bán hàng</div>
+    </header>
+
+    <section class="wizard-shell">
+        <aside class="steps" aria-label="Tiến trình đăng ký">
+            <div class="step active">
+                <span class="step-number">1</span>
+                <span class="step-title">Cá nhân</span>
+            </div>
+            <div class="step">
+                <span class="step-number">2</span>
+                <span class="step-title">Gian hàng</span>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <span class="step-title">Xác nhận</span>
+            </div>
+        </aside>
+
+        <section class="form-panel">
+            <h1 class="panel-title">Thông tin cá nhân</h1>
+            <p class="panel-subtitle">Thông tin chủ gian hàng dùng để xác minh hồ sơ đăng ký.</p>
+
+            <form th:action="@{/seller/register/step-1}" th:object="${sellerRegistrationForm}" method="post">
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="fullName">Họ tên</label>
+                        <input id="fullName" type="text" th:field="*{fullName}"
+                               th:classappend="${#fields.hasErrors('fullName')} ? ' is-invalid' : ''">
+                        <p class="error" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" th:field="*{email}"
+                               th:classappend="${#fields.hasErrors('email')} ? ' is-invalid' : ''">
+                        <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="phone">Số điện thoại</label>
+                        <input id="phone" type="text" th:field="*{phone}"
+                               th:classappend="${#fields.hasErrors('phone')} ? ' is-invalid' : ''">
+                        <p class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="identityNumber">CCCD/CMND</label>
+                        <input id="identityNumber" type="text" th:field="*{identityNumber}"
+                               th:classappend="${#fields.hasErrors('identityNumber')} ? ' is-invalid' : ''">
+                        <p class="error" th:if="${#fields.hasErrors('identityNumber')}" th:errors="*{identityNumber}"></p>
+                    </div>
+
+                    <div class="field full">
+                        <label for="contactAddress">Địa chỉ liên hệ</label>
+                        <input id="contactAddress" type="text" th:field="*{contactAddress}"
+                               th:classappend="${#fields.hasErrors('contactAddress')} ? ' is-invalid' : ''">
+                        <p class="error" th:if="${#fields.hasErrors('contactAddress')}" th:errors="*{contactAddress}"></p>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="button primary" type="submit">Tiếp</button>
+                </div>
+            </form>
+        </section>
+    </section>
+</main>
+</body>
+</html>

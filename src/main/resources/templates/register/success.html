@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng ký nhà bán hàng - Hoàn tất</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="page">
+    <header class="topbar">
+        <div class="brand">RikkeiMall</div>
+        <div class="badge">Đối tác nhà bán hàng</div>
+    </header>
+
+    <section class="success-panel">
+        <h1>Đăng ký thành công</h1>
+        <p>Hồ sơ nhà bán hàng đã được lưu vào database với mã đăng ký
+            <strong th:text="${param.id}"></strong>.</p>
+        <div class="actions">
+            <a class="button primary" th:href="@{/seller/register/step-1}">Tạo hồ sơ mới</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>
